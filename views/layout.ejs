@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <!-- noty link for animation -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css"
+    />
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js"></script>
+
+    <!-- j Query cdn below noty link -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <!-- font awsome -->
+    <script src="https://kit.fontawesome.com/66a49a29d4.js" crossorigin="anonymous"></script>
+    <!-- link stylesheet -->
+    <link rel="stylesheet" href="/css/layout.css">
+
+    <%- style %>
+</head>
+<body>
+    <!-- using the partials to header -->
+    <%- include('_header'); %> <!-- extension name ejs not compulsory -->
+
+    <main>
+
+        <%- body %>
+        
+    </main>
+
+    <script>
+        <% if(flash.success && flash.success.length >0){  %>
+            new Noty({
+
+                theme: 'relax',
+                type: 'success',
+                text: "<%= flash.success %>",
+                layout: 'topRight',
+                timeout: 1500
+
+            }).show();
+        <% } %>
+
+        <% if(flash.error && flash.error.length >0){ %>
+            new Noty({
+                theme: 'relax',
+                type: 'error',
+                text: "<%= flash.error %>",
+                layout: 'topRight',
+                timeout: 1500
+            }).show();
+        <% } %>
+    </script>
+    
+
+    <!-- using partials to footer -->
+    <%- include('_footer.ejs'); %>
+
+    <%- script %>
+</body>
+</html>
